@@ -1,4 +1,4 @@
-# 1-2-3 draw with me!
+# 1-2-3 paint with me!
 
 A small responsive web app that turns a photo into a printable paint-by-number canvas. This repository is the base architecture and tooling. Product features (sign-in, projects, paints, image processing, PDF export) are not implemented yet.
 
