@@ -1,7 +1,9 @@
 import type { ReactNode } from 'react'
-import { Box, Button, Container, Typography } from '@mui/material'
+import { Button, Container, Link, Typography } from '@mui/material'
 import { Link as RouterLink } from 'react-router'
 import { usePageTitle } from '../ui/title.ts'
+
+const contactEmail = '1-2-3-paint-with-me@googlegroups.com'
 
 function LegalFrame({ title, children }: { title: string; children: ReactNode }) {
   usePageTitle(title)
@@ -31,7 +33,9 @@ export function PrivacyPage() {
       <Typography variant="h5" component="h2">Cookies</Typography>
       <Typography sx={{ mb: 2 }}>One session cookie keeps you signed in.</Typography>
       <Typography variant="h5" component="h2">Contact</Typography>
-      <Typography sx={{ mb: 2 }}>Contact placeholder: privacy@example.com</Typography>
+      <Typography sx={{ mb: 2 }}>
+        <Link href={`mailto:${contactEmail}`}>{contactEmail}</Link>
+      </Typography>
     </LegalFrame>
   )
 }
@@ -46,9 +50,10 @@ export function TermsPage() {
       <Typography sx={{ mb: 2 }}>Color counts, paint matches, and quantity estimates are guides. Printing and paint brands can look different from the screen.</Typography>
       <Typography variant="h5" component="h2">Accounts</Typography>
       <Typography sx={{ mb: 2 }}>You can delete your account at any time from the Account page.</Typography>
-      <Box sx={{ mt: 2 }}>
-        <Typography>Contact placeholder: legal@example.com</Typography>
-      </Box>
+      <Typography variant="h5" component="h2">Contact</Typography>
+      <Typography>
+        <Link href={`mailto:${contactEmail}`}>{contactEmail}</Link>
+      </Typography>
     </LegalFrame>
   )
 }

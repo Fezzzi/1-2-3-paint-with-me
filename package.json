@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "description": "1-2-3 paint with me!",
+  "license": "AGPL-3.0-or-later",
   "packageManager": "pnpm@12.11.2",
   "scripts": {
     "postinstall": "pnpm --dir client install && pnpm --dir server install",

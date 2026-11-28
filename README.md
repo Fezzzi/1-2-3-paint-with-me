@@ -125,3 +125,15 @@ Back up the Postgres volume and the uploads volume. Files are not in the databas
 - HEIC photos depend on the browser. Export one as JPEG when it will not open.
 - The privacy and terms pages are templates and need legal review before a public launch.
 - Google sign-in needs a client id. The developer shortcut exists only outside production.
+
+## License
+
+Copyright (C) 2026 Filip Horky
+
+Contact: 1-2-3-paint-with-me@googlegroups.com
+
+1-2-3 paint with me! is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+The full license is in [LICENSE](LICENSE). Anyone who runs a modified copy as a website has to offer that version's source to the people using the site. Fredoka and Inter remain under the SIL Open Font License.
