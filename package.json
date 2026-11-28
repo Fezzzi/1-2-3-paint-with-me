@@ -3,16 +3,21 @@
   "private": true,
   "version": "0.0.0",
   "description": "1-2-3 paint with me!",
+  "packageManager": "pnpm@12.11.2",
   "scripts": {
-    "postinstall": "npm install --prefix client && npm install --prefix server",
-    "dev": "concurrently -n client,server -c cyan,magenta \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
-    "dev:client": "npm run dev --prefix client",
-    "dev:server": "npm run dev --prefix server",
-    "build": "npm run build --prefix client && npm run build --prefix server",
-    "lint": "npm run lint --prefix client && npm run lint --prefix server",
-    "test": "npm run test --prefix client && npm run test --prefix server",
-    "db:generate": "npm run db:generate --prefix server",
-    "db:migrate": "npm run db:migrate --prefix server"
+    "postinstall": "pnpm --dir client install && pnpm --dir server install",
+    "dev": "concurrently -n client,server -c cyan,magenta \"pnpm --dir client dev\" \"pnpm --dir server dev\"",
+    "dev:client": "pnpm --dir client dev",
+    "dev:server": "pnpm --dir server dev",
+    "build": "pnpm --dir client build && pnpm --dir server build",
+    "lint": "pnpm --dir client lint && pnpm --dir server lint",
+    "test": "pnpm --dir client test && pnpm --dir server test",
+    "db:generate": "pnpm --dir server db:generate",
+    "db:migrate": "pnpm --dir server db:migrate",
+    "host:neon": "node scripts/hosted/neon.mjs",
+    "host:r2": "node scripts/hosted/r2.mjs",
+    "host:fly": "node scripts/hosted/fly.mjs",
+    "host:up": "node scripts/hosted/up.mjs"
   },
   "devDependencies": {
     "concurrently": "^10.0.7"

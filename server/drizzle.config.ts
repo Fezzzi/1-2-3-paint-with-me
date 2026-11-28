@@ -8,6 +8,6 @@ export default defineConfig({
   dbCredentials: {
     url:
       process.env.DATABASE_URL ??
-      'postgres://paint:paint@localhost:5432/paint_with_me',
+      'postgres://paint:paint@127.0.0.1:5433/paint_with_me',
   },
 })

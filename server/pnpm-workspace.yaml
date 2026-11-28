@@ -1,0 +1,8 @@
+packages:
+  - "."
+
+nodeLinker: hoisted
+symlink: false
+packageImportMethod: copy
+allowBuilds:
+  esbuild: true

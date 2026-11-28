@@ -1,0 +1,42 @@
+# Hosted app. One shared-cpu-1x machine in Amsterdam, about $3.69/month in
+# Fly's cheapest regions and inside the $5 monthly credit when this is the only
+# Fly usage. Photos live in Cloudflare R2, so this machine has no volume.
+# Secrets (DATABASE_URL, SESSION_SECRET, GOOGLE_CLIENT_ID, PUBLIC_ORIGIN, R2_*)
+# are set with `pnpm host:fly`, not in this file.
+
+app = "paint-with-me"
+primary_region = "ams"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[http_service]
+  internal_port = 3001
+  force_https = true
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    grace_period = "1m"
+    interval = "30s"
+    method = "GET"
+    path = "/api/ready"
+    timeout = "5s"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "3001"
+  STATIC_DIR = "/app/public"
+  COOKIE_SECURE = "true"
+  TRUST_PROXY = "true"
+  DEV_LOGIN_ENABLED = "false"
+  LOG_LEVEL = "info"
+  # Refuse new uploads at 8 GiB total, under R2's free 10 GB, and at 200 MiB per account.
+  STORAGE_MAX_BYTES = "8589934592"
+  USER_STORAGE_MAX_BYTES = "209715200"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory = "512mb"

@@ -1,0 +1,16 @@
+node_modules
+**/node_modules
+**/dist
+.git
+server/uploads
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.production.example
+!**/.env.hosted.example
+.cursor
+.github
+artifacts
+coverage
+*.log
+*.tsbuildinfo

@@ -1,17 +1,26 @@
 import 'dotenv/config'
-import cors from '@fastify/cors'
-import Fastify from 'fastify'
+import { createApp } from './app.js'
+import { loadConfig } from './config.js'
+import { closeDb } from './db/client.js'
+import { runMigrations } from './db/migrate.js'
 
-const port = Number(process.env.PORT ?? 3001)
-const origin = process.env.CLIENT_ORIGIN ?? 'http://localhost:5173'
+const config = loadConfig()
+if (config.nodeEnv === 'production') await runMigrations()
 
-const app = Fastify({ logger: true })
+const app = await createApp({ logger: true })
+await app.listen({ port: config.port, host: '0.0.0.0' })
 
-await app.register(cors, {
-  origin,
-  credentials: true,
+let closing = false
+async function shutdown() {
+  if (closing) return
+  closing = true
+  await app.close()
+  await closeDb()
+}
+
+process.on('SIGTERM', () => {
+  void shutdown().then(() => process.exit(0))
 })
-
-app.get('/api/health', async () => ({ ok: true }))
-
-await app.listen({ port, host: '0.0.0.0' })
+process.on('SIGINT', () => {
+  void shutdown().then(() => process.exit(0))
+})

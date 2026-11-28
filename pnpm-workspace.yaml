@@ -1,0 +1,10 @@
+packages:
+  - "."
+
+# This disk is exFAT, which cannot create symlinks. pnpm always symlinks
+# workspace packages, so client and server stay separate projects.
+nodeLinker: hoisted
+symlink: false
+packageImportMethod: copy
+allowBuilds:
+  esbuild: true
